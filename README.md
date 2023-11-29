@@ -47,9 +47,17 @@ Przed przystąpieniem do popniższych zadań upewnij się, że masz zainstalowan
 - React to nie tylko JS, zwróć uwagę na klasy które zostały dodane do poszczególnych elementów w komponencie App.js (klasy dodajemy za pomocą właściwości "className"), odpowiadają one za otoczkę wizualną renderowanych elementów (CSS). Komponent App.js w 2-giej linii importuje powiązane klasy z pliku App.css, zlokalizuj tam wspomniane style, zmodyfikuj np. kolor tła / rozmiar czcionki, czy wysokość logo i sprawdź wyniki w przeglądarce.
 
 
+## Zadanie 6 - Code formatter - Dodatek Prettier
 
-## Zadanie 6 - Nowy komponent - https://react.dev/learn#components
+Aby nie martwić się o styl w jaki piszemy kod (wcięcia / entery / długości linii itp.) doinstalumy narzędie, które będzie robiło to za Nas wedle globalnie ustalonych konwencji. Aby tego dokonać:
 
+- zainstaluj do VSCode dodatek https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+- w folderze z projektem zainstaluj paczkę prettiera https://prettier.io/docs/en/install komendą "npm install --save-dev --save-exact prettier"
+- w ustawieniach projektu ustaw opcję "Format on save"
+
+Aby sprawdzić czy wszystko działa poprawnie dodaj kilka enterów w dowolnym komponencie i zapisz plik. Kod powinien automatycznie powrócić do poprawnej formy.
+
+## Zadanie 7 - Nowy komponent - https://react.dev/learn#components
 
 
 W końcu czas utworzyć nowy komponent !!
@@ -72,7 +80,7 @@ Aby to zrobić powinieneś:
 
 
 
-## Zadanie 7 - instalacja dodatku do Generowania komponentów
+## Zadanie 8 - instalacja dodatku do Generowania komponentów
 
 
 
@@ -128,7 +136,7 @@ Jako nazwę dla nowego komponentu podaj "Images". Aby sprawdzić czy wszystko po
 
 
 
-## Zadanie 8 - Komponent Images
+## Zadanie 9 - Komponent Images
 
 
 
@@ -144,7 +152,7 @@ W rezultacie po wykonaniu tego zadania na w przeglądarce wszystko powinno wyśw
 
 
 
-## Zadanie 9 - Komponent LinkImage
+## Zadanie 10 - Komponent LinkImage
 
 
 
@@ -152,47 +160,13 @@ W ramach tego zadania utwórzmy nowy komponent o nazwie LinkedImage, który będ
 
 
 
-## Zadanie 10 - Podział pozostałej zawartości komponentu App na mniejsze komponenty
+## Zadanie 11 - Podział pozostałej zawartości komponentu App na mniejsze komponenty
 
 
 
 W ramach ostatniego zadania utwórz dedykowane komponenty dla pozostałej zawartości komponentu App, a nastepnej użych ich w sposób jak poniżej
 
-```
-const  App  = () => {
-
-return (
-
-<>
-
-<  div>
-
-<  LinkedImage linkTo={...} imageSrc={...}  />
-
-<  LinkedImage linkTo={...} imageSrc={...}  />
-
-</  div>
-
-<  Header  />
-
-<  div  className="card">
-
-<  CounterButton  />
-
-<  InfoText  />
-
-</  div>
-
-<  FooterText  />
-
-</>
-
-);
-
-};
-```
-
-
+![image](https://github.com/niczyporukm/react23-24/assets/9209826/76e8497e-69cc-42bf-8db5-c6bdd382b6bb)
 
 
 ## Praca domowa
