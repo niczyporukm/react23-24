@@ -1,20 +1,16 @@
-import { useState } from "react";
 import "./App.css";
 import Images from "./components/Images/Images";
 import Header from "./components/Header/Header";
 import Paragraph from "./components/Paragraph/Paragraph";
+import CounterButton from "./components/CounterButton/CounterButton";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Images />
       <Header headerText="Vite + React" />
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <CounterButton />
         <Paragraph paragraphText="Edit src/App.jsx and save to test HMR" />
       </div>
       <Paragraph
