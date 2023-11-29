@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Images from "./components/Images/Images";
+import Header from "./components/Header/Header";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -8,7 +9,7 @@ function App() {
   return (
     <>
       <Images />
-      <h1>Vite + React</h1>
+      <Header headerText="Vite + React" />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
