@@ -7,10 +7,12 @@ import CounterButton from "./components/CounterButton/CounterButton";
 import Reapeter from "./components/Reapeter/Reapeter";
 import { useState, useEffect } from "react";
 
-function App() {
+function App(props) {
+  const { shouldCount } = props;
   const [timerValue, setTimerValue] = useState(0);
 
   useEffect(() => {
+    if (!shouldCount) return;
     const interval = setInterval(() => {
       setTimerValue((timerValue) => timerValue + 1);
     }, 1000);
