@@ -1,8 +1,9 @@
 import "./Reapeter.css";
 
 const Reapeter = (props) => {
+  const { repeatAmount } = props;
   let valueToRender = [];
-  for (let step = 0; step < 5; step++) {
+  for (let step = 0; step < repeatAmount; step++) {
     // Runs 5 times, with values of step 0 through 4.
     valueToRender.push(props.children);
   }

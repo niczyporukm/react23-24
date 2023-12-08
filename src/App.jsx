@@ -6,24 +6,12 @@ import Paragraph from "./components/Paragraph/Paragraph";
 import CounterButton from "./components/CounterButton/CounterButton";
 import Reapeter from "./components/Reapeter/Reapeter";
 import { useState, useEffect } from "react";
+import Animator from "./components/Animator/Animator";
 
-function App(props) {
-  const { shouldCount } = props;
-  const [timerValue, setTimerValue] = useState(0);
-
-  useEffect(() => {
-    if (!shouldCount) return;
-    const interval = setInterval(() => {
-      setTimerValue((timerValue) => timerValue + 1);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const shouldDisplayContent = timerValue < 10 || timerValue > 20;
+function App() {
   return (
     <>
-      <Header headerText={timerValue} />
-      {shouldDisplayContent && <Images timerValue={timerValue} />}
+      <Animator />
       <Header headerText="Vite + React" />
       <div className="card">
         <CounterButton />
@@ -33,9 +21,6 @@ function App(props) {
         paragraphText="Click on the Vite and React logos to learn more"
         className="read-the-docs"
       />
-      <Reapeter>
-        <img src={viteLogo}></img>
-      </Reapeter>
     </>
   );
 }
