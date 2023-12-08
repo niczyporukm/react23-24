@@ -7,8 +7,18 @@ import CounterButton from "./components/CounterButton/CounterButton";
 import Reapeter from "./components/Reapeter/Reapeter";
 
 function App() {
+  let valueFromTimer = 0;
+
+  setInterval(() => {
+    console.log("I am called");
+    console.log("current value of timer", valueFromTimer);
+    valueFromTimer = valueFromTimer + 1;
+  }, 3000);
+
+  console.log("CONSOLE LOG PRZED RENDEREM");
   return (
     <>
+      <Header headerText={valueFromTimer} />
       <Images />
       <Header headerText="Vite + React" />
       <div className="card">
