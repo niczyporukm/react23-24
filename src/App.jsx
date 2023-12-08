@@ -5,22 +5,22 @@ import viteLogo from "../src/assets/vite.svg";
 import Paragraph from "./components/Paragraph/Paragraph";
 import CounterButton from "./components/CounterButton/CounterButton";
 import Reapeter from "./components/Reapeter/Reapeter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [timerValue, setTimerValue] = useState(0);
 
-  setInterval(() => {
-    console.log("I am called");
-    console.log("current value of timer", timerValue);
-    setTimerValue(timerValue + 1);
-  }, 3000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimerValue((timerValue) => timerValue + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-  console.log("CONSOLE LOG PRZED RENDEREM");
   return (
     <>
       <Header headerText={timerValue} />
-      <Images />
+      <Images timerValue={timerValue} />
       <Header headerText="Vite + React" />
       <div className="card">
         <CounterButton />
