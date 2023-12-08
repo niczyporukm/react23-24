@@ -19,10 +19,11 @@ function App(props) {
     return () => clearInterval(interval);
   }, []);
 
+  const shouldDisplayContent = timerValue < 10 || timerValue > 20;
   return (
     <>
       <Header headerText={timerValue} />
-      <Images timerValue={timerValue} />
+      {shouldDisplayContent && <Images timerValue={timerValue} />}
       <Header headerText="Vite + React" />
       <div className="card">
         <CounterButton />
