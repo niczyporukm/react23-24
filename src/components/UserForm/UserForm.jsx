@@ -6,6 +6,7 @@ const UserForm = () => {
   const [password, setPassword] = useState("");
   const [userAge, setUserAge] = useState();
   const [showPassword, setShowPassword] = useState(false);
+  const [isVegan, setIsVegan] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -37,7 +38,7 @@ const UserForm = () => {
       <button type="button" onClick={togglePasswordVisibility}>
         {showPassword ? "Hide Password" : "Show Password"}
       </button>
-      <label>Age</label>
+      <p>Age</p>
       <input
         type="number"
         placeholder="Age"
@@ -46,6 +47,12 @@ const UserForm = () => {
         onChange={handleSetUserAge}
         value={userAge}
       />
+      <label>Is Vegan ?</label>
+      <select value={isVegan} onChange={(e) => setIsVegan(e.target.value)}>
+        <option value="">Select...</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
     </form>
   );
 };
