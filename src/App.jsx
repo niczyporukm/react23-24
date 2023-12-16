@@ -3,6 +3,7 @@ import Paragraph from "./components/Paragraph/Paragraph";
 import CounterButton from "./components/CounterButton/CounterButton";
 import Button from "./components/Button/Button";
 import { useState } from "react";
+import UserForm from "./components/UserForm/UserForm";
 
 function App() {
   const [isUserFromVisible, setIsUserFromVisible] = useState(false);
@@ -16,7 +17,7 @@ function App() {
           onClick={() => setIsUserFromVisible((prevState) => !prevState)}
         />
       </div>
-      {isUserFromVisible && <form> User Form</form>}
+      {isUserFromVisible && <UserForm />}
     </>
   );
 }
