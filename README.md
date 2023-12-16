@@ -1,176 +1,129 @@
 
-# PS 1 - 26.11.2023
+# PS 2 - 09.12.2023
 
+## Zadanie 0 - React DevTools for Chrome
 
+Pobierz dodatek do Chrome https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi, który umożliwia podgląd aplikacji pod kątem React'a.
 
-Przed przystąpieniem do popniższych zadań upewnij się, że masz zainstalowane:
+Odpal projekt i sprawdź w przeglądarce, czy pojawiły się nowe karty [Profiler oraz Components] w DevToolsach.
+Wejdź w zakładkę Profiler i włącz opcję "Highlight updates when components render", dzięki temu będziesz mógł obserwować które komponenty się przerenderowują w postaci mrygającej animacji.
 
-- NodeJS w wersji 18.0.0 lub wyższej
+## Zadanie 1 - Licznik
 
-- Visual Studio Code
+Wszystkie dzisiejsze zadania będą bazowały na liczniku, który będzie zwiększał liczbę co 3 sekundy, zacznijmy od stworzenia go i umieszczenia w Naszej aplikacji.
 
-
-
-## Zadanie 1 - utworzenie aplikacji
-
-
-
-- utwórz folder w którym będzie się znajdować twój projekt
-
-- z poziomu konsoli / terminala wejdź do nowo utworzonego folderu i za pomocą narzędzia Vite stwórz nową aplikację (React / JavaScript) - https://vitejs.dev/guide/#scaffolding-your-first-vite-project
-
-- wejdź do folderu z aplikacją / uruchom npm install aby zainstalować wszystkie wymagane paczki, a następnie odpal ją za pomocą komendy npm run dev i upewnij się że wyświetliła się ona w przeglądarce - domyślnie http://localhost:5173/
-
-
-
-## Zadanie 2 - analiza plików
-
-
-
-- prześledź w edytorze kodu pliki które zostały wygenerowane (pomijając na razie folder node modules) - postaraj się zrozumieć za co odpowiadają (omówienie plików z prowadzącym)
-
-
-
-
-## Zadanie 4 - wprowadzenie i obserwacja przykładowych zmian -JS
-
-
-
-- Jeżeli jeszcze tego nie zrobiłeś zmodyfikuj plik src/App.js i sprawdź czy dokonane zmiany po zapisaniu są widoczne w przeglądarce (utworzona przez Vite aplikacja posiada moduł hot-reload odpowiadający za nasłuchiwanie i samoczynne odświeżanie aplikacji po dokonanych zmianach, jest to bardzo pomocne narzędzie które z pewnością docenisz. W ramach tego zadania możesz np. zmodyfikować dowolny tekst / usunąć lub dodać nowy paragraf < p >
-
-
-
-## Zadanie 5 - wprowadzenie i obserwacja przykładowych zmian - style CSS
-
-
-
-- React to nie tylko JS, zwróć uwagę na klasy które zostały dodane do poszczególnych elementów w komponencie App.js (klasy dodajemy za pomocą właściwości "className"), odpowiadają one za otoczkę wizualną renderowanych elementów (CSS). Komponent App.js w 2-giej linii importuje powiązane klasy z pliku App.css, zlokalizuj tam wspomniane style, zmodyfikuj np. kolor tła / rozmiar czcionki, czy wysokość logo i sprawdź wyniki w przeglądarce.
-
-
-## Zadanie 6 - Code formatter - Dodatek Prettier
-
-Aby nie martwić się o styl w jaki piszemy kod (wcięcia / entery / długości linii itp.) doinstalumy narzędie, które będzie robiło to za Nas wedle globalnie ustalonych konwencji. Aby tego dokonać:
-
-- zainstaluj do VSCode dodatek https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-- w folderze z projektem zainstaluj paczkę prettiera https://prettier.io/docs/en/install komendą "npm install --save-dev --save-exact prettier"
-- w ustawieniach projektu ustaw opcję "Format on save"
-
-Aby sprawdzić czy wszystko działa poprawnie dodaj kilka enterów w dowolnym komponencie i zapisz plik. Kod powinien automatycznie powrócić do poprawnej formy.
-
-## Zadanie 7 - Nowy komponent - https://react.dev/learn#components
-
-
-W końcu czas utworzyć nowy komponent !!
-
-
-
-Celem tego zadania jest stworzenie nowego komponentu, który wyświetli tekst "Hello world from my first component".
-
-
-
-Aby to zrobić powinieneś:
-
-- w folderze components utwórz folder o takie samej nazwie jaką będzie miał nowy komponent (./src/components/MyFirstComponent) - MyFirstComponent to tylko sugerowana nazwa
-
-- folder ten powinien zawierać 2 pliki MyFirstComponent.jsx oraz MyFirstComponent.css
-
-- wyświetl zawartość Twojego komponentu na ekranie (dodaj wywołanie nowo utworzonego komponentu w pliku index.js nad wywołaniem komponentu <App />)
-
-- sprawdź wynik w przeglądarce
-
-
-
-## Zadanie 8 - instalacja dodatku do Generowania komponentów
-
-
-
-Za każdym razem gdy robimy nowy komponent, powinniśmy stworzyć dedykowany folder oraz plik .jsx, w któ©ym będzie definicja komponentu oraz powiązany plik ze stylami (.css)
-
-
-
-Aby nie robić tego ręcznie możemy posłyżyć się pewnym dodatkiem do Visual Studio Code, który znajdziesz tutaj - https://marketplace.visualstudio.com/items?itemName=roberth.react-gensco
-
-
-
-Zainstaluj ten dodatek, przejdź do jego ustawień, a następnie:
-
-- odnzacz wszystkie opcje
-
-- jako języki wybierz JavaScript, a jako język styli - css
-
-- otwórz plik settings.json i wklej poniżej przygotowany szablon
-
-
+Aby zrobić prosty licznik w JavaScript musimy wykorzystać natywną funkcję setInterval, przykład poniżej
 
 ```
-
-"reactComponentGenerator.componentTemplate": [
-
-"import React from 'react';",
-
-"",
-
-"import './${componentName}.css'"
-
-"",
-
-"const ${componentName} = () => {",
-
-"return (<div className={'${componentName}'}>Sample text from ${componentName} component</div>)",
-
-"}",
-
-"",
-
-"export default ${componentName};",
-
-]
-
+setInterval(() => {
+	// ten kod bedzie wykonywał się cyklicznie co 3 sekundy
+}, 3000);
 ```
 
-Aby utworzyć nowy komponent kliknij prawym przyciskiem myszy w miejscu gdzie ma się on znajdować, wybierz "Generate React Component", podaj nazwę i wciśnij enter. W wybranym miejscu powinien się utworzyć folder z plikami nowo utworzonego komponentu.
+Umieść kod licznika w komponencie App. Licznik ten powinien zwiększać wartość liczby, zatem utwórz zmienną
+```
+let counterValue = 0
+```
+
+i zwiększaj jej wartość wewnątrz licznika poprzez
+```
+counterValue = counterValue + 1
+```
+umieść w kodzie console.log'i które sprawdzą jak zmienia się wartość "counterValue"
+
+Wartość licznika ("counterValue") przekaż jako props do komponentu < Header> i wyświetl na ekranie.
+
+**Wiosek:**
+counterValue jest zmienną, a nie stanem komponentu, zatem na ekranie nie zobaczymy żadnych zmian pomimo prawidłowego działania licznika
+
+## Zadanie 2 - Licznik c.d - Stan (state) zamiast zmiennej
+
+Aby komponent mógł się przerysować musimy użyć stanu (state) zamiast zwykłej zmiennej.
+Zastąp w takim razie utworzoną w poprzednik zadaniu zmienną "counterValue" na stan za pomocą hook'a
+`const  [state,  setState] = useState(initialState);` https://react.dev/reference/react/useState, nie zapomnij o jego zaimportowaniu u góry pliku.
+
+W ramach tego zadania musisz zatem usunąć deklaracje zmiennej i zastąpić ją deklaracją stanu (patrz przykład powyżej) i użyć metody modyfikującej stan zamiast
+```
+counterValue = counterValue + 1
+```
+jak było to zrobione poprzednio.
+
+W efekcie tego zadania licznik powinien działać poprawnie.
+
+**Wniosek:**
+Licznik działa poprawnie, lecz zwróć uwagę co jest logowane w konsoli. Za każdym powtórzeniem licznika pojawia się więcej console.log'ow. Związane jest to z faktem, że każde przerenderowanie komponentu uruchamia oddzielny licznik, takie zachowanie jest bardzo nieporządane i zajmiemy się tym w zadaniu 3.
+
+## Zadanie 3 - Montowanie komponentu - jednorazowa inicjalizacja licznika
+
+Wykorzystaj poznany na wykładzie hook `useEffect`, aby wykonać kod tylko jeden raz podczas cyklu życia komponentu, a mianowicie tuż po jego zamontowaniu. Aby tego dokonać użyj pustej tablicy zależności jak pokazano poniżej
+```
+useEffect(() => {
+
+// ten kod wykona się tylko raz, tuż po pierwszym wyświetleniu komponentu
+}, []); // pusta tablica zależności - componentDidMount
+```
+
+Zwróć uwagę, że każde przerenderowanie komponentu poprzez np zapisanie nowych zmian nadal powoduje powstawanie nowych liczników, zatem finalnie musimy użyć kodu jak poniżej, aby licznik funkcjonował poprawnie
+
+```
+useEffect(() => {
+
+const  interval  =  setInterval(() => {
+
+console.log("licznik");
+
+setTimerValue((timerValue) =>  timerValue  +  1);
+
+}, 1000);
+
+return () =>  clearInterval(interval); // usuwanie poprzedniej instancji licznika przed utworzeniem nowej
+
+}, []);
+```
 
 
+## Zadanie 4 - Renderowanie warunkowe
 
-Jako nazwę dla nowego komponentu podaj "Images". Aby sprawdzić czy wszystko poszło zgodnie z oczekiwaniami wyświetl ten komponent wewnątrz komponentu App.
+Celem tego zadania będzie obserwacja za pomocą dodatku do Chrome'a które komponenty rzeczywiście ulegają przerenderowaniu i zrozumienie dlaczego tak się dzieje. Aby to zrobić wykonaj poniższe czynności:
 
+- W komponencie main.jsx dodaj drugie wywołanie komponentu < App shouldCount={true}  /> w którym przekażesz właściwość o nazwie "shouldCount". Następnie zmodyfikuj komponent App w taki sposób aby licznik liczył tylko w przypadku gdy `props.shouldCount === true`.
+- W efekcie tego zadania powinieneś dwókrotnie wyrenderowane kompononent App, z tą różnicą, że jeden liczy a drugi nie.
 
+**Wniosek:**
+Zwróć uwagę co na ekranie zostaje przerysowywane i postaraj się zrozumieć dlaczego.
 
-## Zadanie 9 - Komponent Images
+## Zadanie 5 - Renderowanie warunkowe c.d
 
+Zmodyfikuj komponent Icons w taki sposób aby wyświetlał jedną bądź drugą ikonę w zależności od aktualnej wartości licznika (gdy liczba jest parzysta wyświetlamy ikonę Vite, zaś dla nieparzystej React).
 
+Aby to zrobić musisz przekazać stan licznika z komponentu App do komponentu Icons, tam wykonać pewne obliczenia, przyda się nowa zmienna
+```
+const isEven = someValue % 2 === 0;
+```
+na podstawie której  będzie wyświetlana zawartość komponentu (potrzebne będą pewne zmiany w funkcji render - renderowanie warunkowe)
 
-Celem tego zadania będzie jest komponentu utworzonego w poprzednim zadaniu w taki sposób, aby wyświetlał on dwa obrazki tj. Logo Vite oraz logo React'a, które w tym momencie renderowane są przez komponent App.
+## Zadanie 6 - Renderowanie warunkowe c.d ...
 
-
-
-Aby to zrobić przenieś < div> a, który zawiera w sobie wspomniane elementy z komponentu App, do komponentu Images. Zwróć uwagę na powiązane style w pliku App.css, one również powinny zostać przeniesione do pliku Images.css.
-
-
-
-W rezultacie po wykonaniu tego zadania na w przeglądarce wszystko powinno wyświetlać się tak jak poprzednio, ponieważ nic nie zmieniliśmy, jedynie odseparowaliśmy część kodu do dedykowanego komponentu.
-
-
-
-## Zadanie 10 - Komponent LinkImage
-
-
-
-W ramach tego zadania utwórzmy nowy komponent o nazwie LinkedImage, który będzie odpowiedzialny za wyświetlenie pojedyńczego linku z logiem. Dodatkowo ten komponent będzie przyjmował dwie właściwości (propsy) takie jak "linkTo" oraz "imageSrc", dzięki czemy będzie on w pełni reużywalny.
+Celem tego zadania jest takie zmodyfikowanie kodu, aby komponent < Icons /> wyświetlał się tylko wtedy, jeżeli wartość licznika jest mniejsza od 10 lub większa od 20. Zadanie jest podobne do poprzedniego. Będziesz potrzebował zmiennej którą będziesz mógł użyć jako warunek w funkcji render - zmiany w komponencie "App"
 
 
+## Zadanie 7 - Obserwacja przerysowywania komponentów - optymalizacja
 
-## Zadanie 11 - Podział pozostałej zawartości komponentu App na mniejsze komponenty
+Spójrz na to co jest wyświetlane na ekranie i zwróć uwagę które komponenty się przerysowują. Można zauważyć, że w niektórych nic się nie zmienia, a pomimo to są co 3 sekundy rysowane na nowo. Nie jest to porządane zachowanie, poprawmy zatem ten błąd.
 
+Aby tego dokonać utwórz nowy komponent, nazwij go np. "Animator" i umieść w nim komponent Header z licznikiem oraz komponent z ikonami. Przenieś tam również deklaracje i obsługę powiązanych stanów.
 
+Efektem tego zadania powinno być wyeliminowanie zbędnych przerysowań komponentów których nie dotyczą zmiany.
 
-W ramach ostatniego zadania utwórz dedykowane komponenty dla pozostałej zawartości komponentu App, a nastepnej użych ich w sposób jak poniżej
+## Zadanie 8 - Reapeater - wyświetlanie ikon od 1 do 10
 
-![image](https://github.com/niczyporukm/react23-24/assets/9209826/76e8497e-69cc-42bf-8db5-c6bdd382b6bb)
+Przeanalizuj kod komponentu < Reapeter /> - jak można zauważać wyświetla on pewną ilość razy zawartość, którą przekazaliśmy do niego jako zawartość tj. props.child.
 
+Zmodyfikuj jego kod w taki sposób, aby wyświetlał on ilość ikon zgodną z resztą dzielenia przez 10 aktualnej wartości licznika, zatem dla:
+1 - 1ikona
+2 - 2 ikony
+10 - 0 ikon
+15 - 5 ikon
+33 - 3 ikony
 
-## Praca domowa
-
-
-
-https://www.youtube.com/watch?v=opNgrPv3Qw8 - 2 godzinny kurs HTML / CSS dla początkujących
+ Do wyliczenia reszty z dzielenia użyj operatora modulo  [%], podobnie jak to było w przypadku wyliczania liczby parzystej / nieparzystej.
