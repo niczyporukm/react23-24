@@ -11,15 +11,24 @@
 /* Style the text inputs, submit button, checkboxes, radio buttons, and dropdowns */
 .UserForm input[type="text"],
 .UserForm input[type="password"],
+.UserForm input[type="number"],
 .UserForm input[type="submit"],
 .UserForm input[type="checkbox"],
 .UserForm input[type="radio"],
 .UserForm select {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+.UserForm label {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 /* Style the submit button */
