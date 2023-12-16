@@ -1,7 +1,14 @@
 import "./CounterButton.css";
+import { useState } from "react";
 
 const CounterButton = () => {
-  return <button>count is X</button>;
+  const [count, setCount] = useState(0);
+
+  return (
+    <button onClick={() => setCount((prevCountValue) => prevCountValue + 1)}>
+      count is {count}
+    </button>
+  );
 };
 
 export default CounterButton;
