@@ -4,8 +4,16 @@ import { useState } from "react";
 const CounterButton = () => {
   const [count, setCount] = useState(0);
 
+  const handleRightMouseButtonClick = (event) => {
+    event.preventDefault();
+    count > 0 && setCount((prevCountValue) => prevCountValue - 1);
+  };
+
   return (
-    <button onClick={() => setCount((prevCountValue) => prevCountValue + 1)}>
+    <button
+      onContextMenu={handleRightMouseButtonClick}
+      onClick={() => setCount((prevCountValue) => prevCountValue + 1)}
+    >
       count is {count}
     </button>
   );
