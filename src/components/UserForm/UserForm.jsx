@@ -47,12 +47,14 @@ const UserForm = () => {
         onChange={handleSetUserAge}
         value={userAge}
       />
-      <label>Is Vegan ?</label>
-      <select value={isVegan} onChange={(e) => setIsVegan(e.target.value)}>
-        <option value="">Select...</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select>
+      <label>
+        Is Vegan ?
+        <select value={isVegan} onChange={(e) => setIsVegan(e.target.value)}>
+          <option value="">Select...</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </label>
     </form>
   );
 };
