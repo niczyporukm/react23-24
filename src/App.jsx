@@ -1,24 +1,19 @@
-import "./App.css";
-import Paragraph from "./components/Paragraph/Paragraph";
-import CounterButton from "./components/CounterButton/CounterButton";
-import Button from "./components/Button/Button";
-import { useState } from "react";
-import UserForm from "./components/UserForm/UserForm";
+import styles from "./App.module.scss";
+import AddProducts from "./components/zaliczenie/AddProducts/AddProducts";
+import ProductsFilters from "./components/zaliczenie/ProductsFilters/ProductsFilters";
+import ProductsList from "./components/zaliczenie/ProductsList/ProductsList";
+import ShopingList from "./components/zaliczenie/ShopingList/ShopingList";
 
 function App() {
-  const [isUserFromVisible, setIsUserFromVisible] = useState(false);
   return (
-    <>
-      <div className="card">
-        <CounterButton />
-        <Paragraph paragraphText="Click left button to decrease / right to increase" />
-        <Button
-          text="Show / Hide User From"
-          onClick={() => setIsUserFromVisible((prevState) => !prevState)}
-        />
+    <div className={styles.appWrapper}>
+      <AddProducts />
+      <ProductsFilters />
+      <div className={styles.columnsWrapper}>
+        <ProductsList />
+        <ShopingList />
       </div>
-      {isUserFromVisible && <UserForm />}
-    </>
+    </div>
   );
 }
 

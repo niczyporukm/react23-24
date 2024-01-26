@@ -1,110 +1,72 @@
-# PS 4 - 13.01.2024
+# PS 5 - 12.02.2023 Zadanie zaliczeniowe (sem1) - "Zakupownik"
+
+Maksymalna ilość punktów: 5
+
+Punkty  | Ocena
+------------- | -------------
+3  | 3
+3.5  | 3.5
+4  | 4
+4.5  | 4.5
+5  | 5
+
+**Ważne**
+- Zadaniem **obowiązkowym** jest zadanie nr.1 (za 3 pkt), pozostałe zadania mogą być wykonywane opcjonalnie w celu podniesienia punktacji
+
+Aplikacja "Zakupownik" jest pomocnikiem w planowaniu i realizowaniu zakupów.
+Składa się ona z 4 sekcji:
+- Sekcja dodawania dostępnych produktów - komponent "AddProducts"
+- Sekcja filtrowania dostępnych produktów - komponent "ProductsFilters"
+- Lewa kolumna - wyświetlająca dostępne produkty - komponent "ProductsList"
+- Prawa kolumna - wyświetlająca produkty dodane do listy zakupowej - "ShopingList"
+
+Aplikacja zawiera zdefiniowaną listę produktów w pliku src/common/consts/produkty.js, a przykładowa struktura pojedyńczego produktu wygląda jak poniżej
+  ```
+  {
+      nazwa: 'mleko',
+      kategoria: 'nabiał',
+      produktSpozywczy: true,
+  }
+  ```
 
 
+# Zadanie nr.1 (obowiązkowe) - 3pkt
+- Lewa kolumna (dostępnych produktów) powinna wyświetlać listę produktów pochodzącą z pliku produkty.js w postaci listy nienumerowanej (wyświetlamy tylko nazwę)
+- Kliknięcie lewym przyciskiem myszy na jeden z produktów dodaje go do 'listy zakupowej'
+- Prawa kolumna wyświetla aktualną listę zakupową, zatem na początku będzie pusta, lecz po kliknięciu na dowolny produkt z listy dostępnych produktów pojawi się on na liście zakupowej (wybrany element nie znika z listy dostępnych produktów)
+- Powinna istnieć możliwość wielokrotnego wybrania tego samego produktu, w tym celu wystarczy ponownie wybrać element z listy po lewej stronie, po czym po prawej powinien on się pojawić jako kolejna pozycja
+- Kliknięcie prawym przyciskiem myszy na dowolny element z listy zakupowej powinien usunąć go z listy (symuluje to sytuacje w której ktoś wrzucił produkt do wózka z zakupami i usunął go z listy zakupowej)
 
-## Zadanie 1 Formularz c.d
+# Zadanie nr.2 - Filtrowanie listy "dostępnych produktów" (0.5 pkt)
+Lista po lewej stronie (dostępnych produktów) może być bardzo długa, zatem powinna posiadać możliwość filtrowania aby w krótkim czasie wyszukać interesujący Nas produkt. Sekcja filtrów powinna posiadać 2 typy filtrów:
 
-W ramach tego zadania u góry formularza utworzonego na poprzednich zajęciach wypisz aktualne wartości w postaci paragrafów < p/> dla wszystkich z utworzonych pól tj. Imie, hasło, wiek, weganin.
-< p> Imie: {userName} < /p>
-  Będzie to pomocne przy analizowaniu tego co znajduje się w stanach komponentu UserForm
+- po nazwie (lub jej części) - wielkość liter ma znaczenie (input typu text)
+- po kategorii - powinna istnieć możliwość wybrania dowolnej kategorii z pośród istniejących  (lista rozwijana - drop down)
+- sekcja powinna również posiadać przycisk "Wyszukaj" który będzie filtrował wyniki na podstawie wybranych wartości
 
-## Zadanie 2 - Nowe pole Food preferences.
+# Zadanie nr.2a - Rozszerzone filtry (0.5 pkt)
+Zmodyfikuj sekcję filtrów aby zawierała poniższe udoskonalenia:
+- dodaj filtr "Tylko produkty spożywcze", który będzie inputem typu "checkbox"
+- filtrowanie powinno się odbywać bez użycia przycisku wyszukaj - (po każdorazowej zmianie dowolnego z filtrów lista "proponowanych produktów" powinna być poddawana filtrowaniu
+- podczas wyszukiwania po nazwie wielkość liter nie powinna mieć znaczenia
 
-Na dole formularza dodaj nowe pola dotyczące Food preferences dla dwóch pozycji :
- - beans
- - chicken
+# Zadanie nr.3 - Dodawanie nowych produktów do listy "dostępnych produktów" (0.5pkt)
+Domyślnie lista "dostępnych produktów" wyświetlana jest na podstawie danych z pliku produkty.js. Celem tego zadania jest umożliwienie użytkownikowi dodawania dodatkowych produktów do listy po lewej stronie. Dane powinny być kompletne, zatem w ramach zadania powinny powstać następujące elementy:
+- pole tekstowe - nazwa
+- **pole tekstowe** - kategoria - **można dodawać produkty o nowych kategoriach**
+- input typu "checkbox" - produkt spożywczy
+- Przycisk "Dodaj" który będzie dodawał produkt do listy "proponowanych produktów"
 
-Niech to będą checkboxy czyli < input type='checkbox'> https://react.dev/reference/react-dom/components/input#usage przy czym każdy z nich powinien się zawierać w etykiecie < label> ... < /label> jak w podlinkowanym przykładzie.
+Nowo dodane produkty powinny być w pełni interaktywne, tj. powinny działać zgodnie z zadaniami 1 oraz 2. W przypadku zadania 2 nowe kategorie powinny być widoczne na liście rozwijanej.
 
-Zwróć uwagę, że każdy input powinien mieć właściwość "name", która będzie definiowała unikalną nazwę.
+# Zadanie nr.4 - Odznaczanie produktów "kupionych" (0.5pkt)
+Po wykonaniu zadania 1, kliknięcie na produkt z listy zakupowej (prawa kolumna) powoduje jego zniknięcie. Celem tego zadania jest rozszerzenie tej funkcjonalności o poniższą:
+ - kliknięcie prawym przyciskiem myszy na element powoduje jego przekreślenie
+ - ponowne kliknięcie prawym przyciskiem na przekreślony element powoduje że staje się on z powrotem nieprzekreślony
+ - kliknięcie lewym przyciskiem myszy powinno usuwać element z listy (to samo zachowanie jakie posiadał prawy przycisk w zad.1)
 
-## Zadanie 3 - Food preferences - funkcja do zarządzania stanem - dodawanie do listy
-
-W ramach tego zadania napisz funkcję, która bedzie powiązana z nowo dodanym polem w formularzu, nazwijmy ją "handleFoodPreference".
-
-Funkcja ta powinna być wyzwalana po kliknięciu w dowolny checkbox, otrzymywać zdarzenie - event, na podstawie którego będzie dodawać wartości w stanie.
-
-Musisz zatem utworzyć nowy stan o nazwie "foodPreferences", w którym będą przetrzymywane zaznaczone pozycje, a domyślnie będzie pustą listą "[]"
-
-W ramach tego zadania wystarczy zrób jedynie dodawanie zaznaczonych wartości do stanu oraz dodaj właściwość checked={} do każdego z inputów, dla przykładu
-
-`checked={foodPreferences.includes("beans")}`
-
-dzięki temu wartość inputa bedzie zawsze powiązana ze stanem faktycznym.
-
-Podpowiedź: W tym zadaniu musisz wykorzystać dwie rzeczy pochodzące ze zdarzenia tj.
-  - event.target.name - informacja o tym, który checkbox został kliknięty
-  - event.target.checked - informacja o tym jaki jest stan checkboxa po kliknięciu
-
-## Zadanie 4 - Food preferences - funkcja do zarządzania stanem - dodawanie / usuwanie z listy
-
-W ramach tego zadania zmodyfikuj funkcję "handleFoodPreference" w taki sposób aby obsługiwała zaznaczanie oraz odnaczanie checkboxów. Będziesz do tego potrzebował wartości "checked pochodzącej ze zdarzenia. Szablon może zatem wyglądać jak poniżej
-```
-const  handleSelectFoodPreferences  = (event) => {
-const  name  =  event.target.name;
-const  checked  =  event.target.checked;
-
-	if (checked) {
-		// dodawanie elementu do stanu
-	} else {
-		// usuwanie elementu ze stanu - usuwanie z listy
-	}
-};
-```
-
-## Zadanie 5 - Mapowanie elementów za pomocą .map()
-
-W ramach tego zadania zoptymalizujmy jedno z pól formularza tj.
-```
-<label>
-	Is Vegan ?
-	<select  value={isVegan}  onChange={(e) =>  setIsVegan(e.target.value)}>
-		<option  value=""></option>
-		<option  value="Yes">Yes</option>
-		<option  value="No">No</option>
-	</select>
-</label>
-```
-poprzez użycie funkcji mapującej. Zwróć uwagę, że < select> zawiera 3 opcje
- - " "
- - "Yes"
- - "No"
-
-Można zatem umieścić je w tablicy na podstawie której dokonamy natępnie mapowania tj.
-`const isVeganOptions = ["", "Yes", "No"]`
-
-i dokonać mapowania jak poniżej
-```
-isVeganOptions.map((valueFromArray) => <option value={valueFromArray}>{valueFromArray}</option>)
-```
-
-Dzięki takiemu zabiegowi w bardzo prosty sposób można w przyszłości manipulować ilością elementów za pomocą jednej zmiany na liście zamiast usuwania całych < option> wewnątrz select'a.
-
-
-## Zadanie 6 - Is Vegan - display only beans
-
-Celem tego zadania jest spełnienie poniższej funkcjonalości:
- - jeżeli użytkownik zaznaczy opcję isVegan, z listy FoodPreferences powinna zniknąć opcja chicken, oraz jeżeli był on wcześniej zaznaczony powinien zniknąć ze stanu
- - odznaczenie opcji isVegan powinno z powrotem pokazać wszystkie pozycje
-
-## Zadanie 7 - Mapowanie elementów za pomocą .map() - c.d
-
-W ramach tego zadania wykonaj podobną optymalizację jak w zadaniu 5, przy czym powinna się ona tyczyć pola FoodPreferences. Każda z potraw może być wegańska lub nie, zatem tutaj kolekcja na której będziemy malowali będzie listą obiektów tj.
-```
-const foodPreferencesList = [
-	{
-		name: 'Bean'
-		isVegan: true
-	},
-	{
-		name: 'Chicken'
-		isVegan: false
-	}
-]
-```
-```
-foodPreferencesList.map((singleFood) => <input type="checkbox name={singleFood.name} checked={...} onChange={...}>)
-```
-
-## Zadanie 8 - Optymalizacja
-W ramach tego zadania utwórz komponenty IsVeganFormInput oraz FoodPreferencesInput i przenieś do nich logikę bezpośrednio związaną z tymi polami formularza. Pamiętaj o komunikacji dziecko -> rodzic | rodzic -> dziecko, aby funkcjonalność z poprzednich zadań pozostała taka sama.
+Do zadania będziesz potrzebował pewnej modyfikacji stylu dla elementu <li>, niestety w ramach dotychczasowych zajęć nie zajmowaliśmy się stylowaniem, zatem gotowy przykład znajduje się poniżej
+  ```
+<li style={{"text-decoration": `${produkt.kategoria === "nabiał" ? "line-through" : "auto" }`}}> Ser </li>
+  ```
+Skopiuj powyższy styl tj. style={{ ... }}, wklej do swojej aplikacji w miejscu wyświetlania listy zakupowej i sprawdź czy produkty nabiałowe zostały przekreślone, jeżeli tak, możesz zabrać się za właściwą cześć zadania.
