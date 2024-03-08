@@ -7,9 +7,15 @@ import { NavLink } from "react-router-dom";
 
 function App() {
   const [isUserFromVisible, setIsUserFromVisible] = useState(false);
+
+  const userName = JSON.parse(localStorage.getItem("user")).username;
+
   return (
     <>
       <div className="card">
+        <Paragraph
+          paragraphText={`Cześć, jesteś zalogowany jako: ${userName}`}
+        />
         <NavLink to="/login">Wyloguj</NavLink>
         <Paragraph paragraphText="Witaj w 2-gim semestrze" />
         <Button
