@@ -1,110 +1,99 @@
-# PS 4 - 13.01.2024
+# PS 6 - 09.03.2024 - React Router / LocalStorage / cutomHooks
 
+## Zadanie 0 Instalacja ReactRouter
+Zainstaluj paczkę React Router'a zgodnie z oficjalną dokumentacją https://reactrouter.com/en/dev/start/tutorial#setup
 
+npm install react-router-dom localforage match-sorter sort-by
 
-## Zadanie 1 Formularz c.d
+## Zadanie 1 Routing wstępna konfiguracja
 
-W ramach tego zadania u góry formularza utworzonego na poprzednich zajęciach wypisz aktualne wartości w postaci paragrafów < p/> dla wszystkich z utworzonych pól tj. Imie, hasło, wiek, weganin.
-< p> Imie: {userName} < /p>
-  Będzie to pomocne przy analizowaniu tego co znajduje się w stanach komponentu UserForm
+Zgodnie z oficjalną dokumentacją https://reactrouter.com/en/dev/start/tutorial#adding-a-router
+Zmodyfikuj plik main.js w taki sposób aby opakować aplikację w komponent ReactRoutera.
 
-## Zadanie 2 - Nowe pole Food preferences.
+Umieśc komponent App w ścieżce domyślnej tj. "/", a następnie sprawdź czy wszystko działa poprawnie (aplikacja powinna zachowywać się tak jak poprzednio)
 
-Na dole formularza dodaj nowe pola dotyczące Food preferences dla dwóch pozycji :
- - beans
- - chicken
+Dodatkowo w ramach tego zadania przenieśmy komponent App do ścieżki /dashboard, która będzie traktowana jako głowna.
 
-Niech to będą checkboxy czyli < input type='checkbox'> https://react.dev/reference/react-dom/components/input#usage przy czym każdy z nich powinien się zawierać w etykiecie < label> ... < /label> jak w podlinkowanym przykładzie.
+Aby tego dokonać musimy posłużyć się pewnym "trikiem", a mianowicie w ścieżce głównej wyrenderować komponent który będzie Nas przenosił na nową ściezkę tj. dashboard
 
-Zwróć uwagę, że każdy input powinien mieć właściwość "name", która będzie definiowała unikalną nazwę.
-
-## Zadanie 3 - Food preferences - funkcja do zarządzania stanem - dodawanie do listy
-
-W ramach tego zadania napisz funkcję, która bedzie powiązana z nowo dodanym polem w formularzu, nazwijmy ją "handleFoodPreference".
-
-Funkcja ta powinna być wyzwalana po kliknięciu w dowolny checkbox, otrzymywać zdarzenie - event, na podstawie którego będzie dodawać wartości w stanie.
-
-Musisz zatem utworzyć nowy stan o nazwie "foodPreferences", w którym będą przetrzymywane zaznaczone pozycje, a domyślnie będzie pustą listą "[]"
-
-W ramach tego zadania wystarczy zrób jedynie dodawanie zaznaczonych wartości do stanu oraz dodaj właściwość checked={} do każdego z inputów, dla przykładu
-
-`checked={foodPreferences.includes("beans")}`
-
-dzięki temu wartość inputa bedzie zawsze powiązana ze stanem faktycznym.
-
-Podpowiedź: W tym zadaniu musisz wykorzystać dwie rzeczy pochodzące ze zdarzenia tj.
-  - event.target.name - informacja o tym, który checkbox został kliknięty
-  - event.target.checked - informacja o tym jaki jest stan checkboxa po kliknięciu
-
-## Zadanie 4 - Food preferences - funkcja do zarządzania stanem - dodawanie / usuwanie z listy
-
-W ramach tego zadania zmodyfikuj funkcję "handleFoodPreference" w taki sposób aby obsługiwała zaznaczanie oraz odnaczanie checkboxów. Będziesz do tego potrzebował wartości "checked pochodzącej ze zdarzenia. Szablon może zatem wyglądać jak poniżej
 ```
-const  handleSelectFoodPreferences  = (event) => {
-const  name  =  event.target.name;
-const  checked  =  event.target.checked;
+const  RedirectToDashboard  = () => {
 
-	if (checked) {
-		// dodawanie elementu do stanu
-	} else {
-		// usuwanie elementu ze stanu - usuwanie z listy
-	}
+const  navigate  =  useNavigate(); // przypisanie do zmiennej wartości hooka
+                                   // useNavigate z biblioteki react-router
+
+// useEffect, który będzie reagował na zmiany w nawigacji
+useEffect(() => {
+	navigate("/dashboard");
+}, [navigate]);
+
+// komponent nie musi nic zwracać (jest typowym komponentem pomocniczym)
+return  null;
 };
 ```
+umieść powyższy komponent bezpośrednio w pliku main.jsx (przykład był pokazany na wykładzie).
 
-## Zadanie 5 - Mapowanie elementów za pomocą .map()
+Po wykonaniu tego zadania, przy wchodzeniu na adres http://localhost:5000/ powinieneś zostać przekierowywany na http://localhost:5000/dashboard
 
-W ramach tego zadania zoptymalizujmy jedno z pól formularza tj.
-```
-<label>
-	Is Vegan ?
-	<select  value={isVegan}  onChange={(e) =>  setIsVegan(e.target.value)}>
-		<option  value=""></option>
-		<option  value="Yes">Yes</option>
-		<option  value="No">No</option>
-	</select>
-</label>
-```
-poprzez użycie funkcji mapującej. Zwróć uwagę, że < select> zawiera 3 opcje
- - " "
- - "Yes"
- - "No"
+## Zadanie 2 - Routing - strona logowania
 
-Można zatem umieścić je w tablicy na podstawie której dokonamy natępnie mapowania tj.
-`const isVeganOptions = ["", "Yes", "No"]`
+W ramach tego zadania:
 
-i dokonać mapowania jak poniżej
-```
-isVeganOptions.map((valueFromArray) => <option value={valueFromArray}>{valueFromArray}</option>)
-```
+- utwórz nowy komponent o nazwie "Login"
+- dodaj nowy routing dla adresu /login i umieść w nim utworzony komponent < Login />
+- jeżeli wykonasz powyższe punkty, powinieneś mieć możliwość przełączania się pomiędzy komponentami za pomocą modyfikacji adresu url (zwróć uwagę, że dla niezdefiniowanych adresów pojawia się domyślna strona 404)
+## Zadanie 3 - Nawigowanie za pomocą przycisków
 
-Dzięki takiemu zabiegowi w bardzo prosty sposób można w przyszłości manipulować ilością elementów za pomocą jednej zmiany na liście zamiast usuwania całych < option> wewnątrz select'a.
+W ramach tego zadania:
+
+- w komponencie Login utwórz przycisk, a jego kliknięcie powinno przenieść użytkownika na adres /dashboard. Użyj do tego useNavigate - https://reactrouter.com/en/dev/hooks/use-navigate#usenavigate
+- w komponencie App dodaj funkcjonalność, która będzie przenosiła Cię z kolei na stronę logowania, użyj w tym przypadku innego sposobu do nawigacji, a mianowicie NavLink - https://reactrouter.com/en/dev/components/nav-link, który będzie tak na prawdę reacowym odpowiednikiem < a > z html'a
+
+Po wykonaniu powyższych punktów powinieneś mieć możliwość łatwego nawigowania pomiedzy stronami login oraz page poprzez klikanie na odpowienie miejsca.
+
+## Zadanie 4 - Formularz logowania
+
+W ramach tego zadania:
+
+- w komponencie Login utwórz formularz, który będzie zawierał 2 pola tekstowe "username" oraz "password", dodaj odpowienie stany do poprawnego zarządzania formularzem
+- przycisk Zaloguj powinien również znajdować się w formularzu, a jego kliknięcie przed przenesiem użytkownika na /dashboard, powinno wypisać w konsoli informacje o użytkowniku, w formie obiektu z dwoma polami tj. {username: '...', password: '....'}
+
+## Zadanie 5 - LocalStorage - zapis
+
+W ramach tego zadania:
+
+- zastąp wypisywanie informacji o użytkowniku na ekranie zapisaniem ich do localStorage (pod kluczem "signedUser".
+- zaloguj się, przejdź do /dashboard i sprawdź w konsoli przeglądarki, czy masz dostęp do dodanego użytkownika
 
 
-## Zadanie 6 - Is Vegan - display only beans
+## Zadanie 6 - LocalStorage - odczyt
 
-Celem tego zadania jest spełnienie poniższej funkcjonalości:
- - jeżeli użytkownik zaznaczy opcję isVegan, z listy FoodPreferences powinna zniknąć opcja chicken, oraz jeżeli był on wcześniej zaznaczony powinien zniknąć ze stanu
- - odznaczenie opcji isVegan powinno z powrotem pokazać wszystkie pozycje
+Skoro mamy globalny dostęp do informacji o zalogowanym użytkowniku, możemy coś z tym zrobić, zatem:
 
-## Zadanie 7 - Mapowanie elementów za pomocą .map() - c.d
+- w komponencie App wykorzystaj kompnent < Paragraph > i wypisz w nim następujący tekst "Witaj, jesteś zalogowany jako: [nazwa użytkownika]", gdzie userName będzie pochodził z localStorage
 
-W ramach tego zadania wykonaj podobną optymalizację jak w zadaniu 5, przy czym powinna się ona tyczyć pola FoodPreferences. Każda z potraw może być wegańska lub nie, zatem tutaj kolekcja na której będziemy malowali będzie listą obiektów tj.
-```
-const foodPreferencesList = [
-	{
-		name: 'Bean'
-		isVegan: true
-	},
-	{
-		name: 'Chicken'
-		isVegan: false
-	}
-]
-```
-```
-foodPreferencesList.map((singleFood) => <input type="checkbox name={singleFood.name} checked={...} onChange={...}>)
-```
+## Zadanie 7 - Auth Guard
 
-## Zadanie 8 - Optymalizacja
-W ramach tego zadania utwórz komponenty IsVeganFormInput oraz FoodPreferencesInput i przenieś do nich logikę bezpośrednio związaną z tymi polami formularza. Pamiętaj o komunikacji dziecko -> rodzic | rodzic -> dziecko, aby funkcjonalność z poprzednich zadań pozostała taka sama.
+Skoro zaimplementowaliśmy stronę logowania oraz zawartość dostępną po zalogowaniu, przydało by się zabezpieczyć to w pewien sposób przed nieautoryzowanym dostępem.
+
+W ramach tego zadania dodaj funkcjonalność, która bedzie przenosiła użytkownika z adresu /dashboard (komponent < App >) do adresu /login (komponent < Login >) jeżeli w localStorage nie będzie informacji o użytkowniku.
+
+Info: Aby testować powyższe zachowanie możesz usuwać dane z localStorage bezpośrednio w konsoli przeglądarki za pomocą komendy localStorage.clear()
+
+## Zadanie 8 - useAuth - custom Hook
+
+W ramach tego zadania funkcjonalność z zadania 7 umieść w customHook'u, zatem
+
+- utwórz nowy folder w src/hooks/
+- utwórz plik useAutch.js - plik z customHookiem musi zaczynać się od "use"m podobnie jak natywne hook'i z React'a.
+- umieść w tym pliku logikę z zadania 7
+- użyj utworzony hook w komponencie App
+
+
+## Zadanie 9 - Rejestracja użytkownika  (extra)
+
+W ramach tego zadania:
+
+- utwórz nowy routing dla adresu /register w którym umieścisz podobny formularz jak w /login
+- wciśnięcie przycisku "Register" po uzupełnieniu formularza powinno dodać użytkownika do puli zarejestrowanych użytkowników (powinni oni być zapisywani w localeStorage), po zapisaniu użytkownik powinien być przeniesiony do /login
+- w procesie logowania przenosimy użytkownika tylko wtedy, jeżeli poda on prawidłowe wartości tj. użyje danych jednego z zarejestrowanych użytkowników)
