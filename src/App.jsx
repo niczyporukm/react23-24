@@ -3,13 +3,15 @@ import Paragraph from "./components/Paragraph/Paragraph";
 import Button from "./components/Button/Button";
 import { useState } from "react";
 import UserForm from "./components/UserForm/UserForm";
+import { NavLink } from "react-router-dom";
 
 function App() {
   const [isUserFromVisible, setIsUserFromVisible] = useState(false);
   return (
     <>
       <div className="card">
-        <Paragraph paragraphText="Witaj w 2-gim semestre" />
+        <NavLink to="/login">Wyloguj</NavLink>
+        <Paragraph paragraphText="Witaj w 2-gim semestrze" />
         <Button
           text="Show / Hide User From"
           onClick={() => setIsUserFromVisible((prevState) => !prevState)}
