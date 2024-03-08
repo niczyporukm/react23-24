@@ -9,6 +9,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import "./index.css";
+import Login from "./components/Login/Login.jsx";
 
 const RedirectToDashboard = () => {
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <App />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

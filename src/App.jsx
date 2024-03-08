@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div className="card">
-        <Paragraph paragraphText="Witaj w 2-gim semestrze" />
+        <Paragraph paragraphText="Witaj w 2-gim semestre" />
         <Button
           text="Show / Hide User From"
           onClick={() => setIsUserFromVisible((prevState) => !prevState)}
