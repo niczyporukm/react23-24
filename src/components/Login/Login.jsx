@@ -15,6 +15,7 @@ const Login = () => {
     };
     // Here you can add authentication logic
     console.log("user", user);
+    localStorage.setItem("user", JSON.stringify(user));
     navigate("/dashboard");
   };
 
