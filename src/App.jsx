@@ -1,22 +1,16 @@
 import "./App.css";
 import Paragraph from "./components/Paragraph/Paragraph";
 import Button from "./components/Button/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserForm from "./components/UserForm/UserForm";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import useAuth from "./hooks/useAuth";
 
 function App() {
   const [isUserFromVisible, setIsUserFromVisible] = useState(false);
+  useAuth();
 
   const userName = JSON.parse(localStorage.getItem("user"))?.username;
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!userName) {
-      navigate("/login");
-    }
-  });
 
   return (
     <>
